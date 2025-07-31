@@ -12,22 +12,17 @@ interface ProfileHeaderProps {
   profileImage: string;
 }
 
-export function ProfileHeader({ 
-  username, 
-  displayName, 
-  bio, 
-  website, 
-  isVerified, 
-  profileImage 
-}: ProfileHeaderProps) {
+export const ProfileHeader = ({ data }) => {
+
+
   return (
     <Card className="p-6 bg-gradient-card border-0 shadow-soft">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="relative">
             <img 
-              src={profileImage} 
-              alt={`${username} profile`}
+              src={data.profileImage} 
+              alt={`${data.username} profile`}
               className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-medium"
             />
             <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-success rounded-full flex items-center justify-center">
@@ -37,38 +32,27 @@ export function ProfileHeader({
           
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <h1 className="text-2xl font-bold text-foreground">@{username}</h1>
-              {isVerified && (
+              <h1 className="text-2xl font-bold text-foreground">@{data.username}</h1>
+              {data.isVerified && (
                 <CheckCircle className="w-6 h-6 text-info" />
               )}
             </div>
             
-            <h2 className="text-lg font-medium text-muted-foreground">{displayName}</h2>
+            <h2 className="text-lg font-medium text-muted-foreground">{data.displayName}</h2>
             
-            <p className="text-sm text-muted-foreground max-w-md">{bio}</p>
+            <p className="text-sm text-muted-foreground max-w-md">{data.bio}</p>
             
-            {website && (
+            {data.website && (
               <div className="flex items-center gap-1 text-sm text-info hover:underline">
                 <ExternalLink className="w-4 h-4" />
-                <a href={website} target="_blank" rel="noopener noreferrer">
-                  {website.replace(/https?:\/\//, '')}
+                <a href={data.website} target="_blank" rel="noopener noreferrer">
+                  {data.website.replace(/https?:\/\//, '')}
                 </a>
               </div>
             )}
           </div>
         </div>
         
-        <div className="flex items-center gap-3">
-          <Button variant="outline" size="sm" className="gap-2">
-            <Bell className="w-4 h-4" />
-            Alertas
-          </Button>
-          
-          <Button variant="outline" size="sm" className="gap-2">
-            <Download className="w-4 h-4" />
-            Exportar
-          </Button>
-        </div>
       </div>
     </Card>
   );

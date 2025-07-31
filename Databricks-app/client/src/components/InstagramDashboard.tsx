@@ -1,10 +1,11 @@
 import { ProfileHeader } from "@/components/ProfileHeader";
-import { KPICards } from "@/components/KPICards";
-import { RecentPosts } from "@/components/RecentPosts";
+import { KPICard } from "@/components/KPICards";
+import { InstagramPostCard } from "@/components/RecentPosts";
 import { FollowersChart } from "@/components/FollowersChart";
 import { SentimentAnalysis } from "@/components/SentimentAnalysis";
 import { PostsTable } from "@/components/PostsTable";
 import profileImage from "@/assets/profile-image.jpg";
+import dataExample from "@/data/example.json"
 
 const mockProfileData = {
   username: "lovable_dev",
@@ -31,13 +32,13 @@ export function InstagramDashboard() {
       {/* Main content */}
       <main className="flex-1 p-6 space-y-8">
         {/* Profile Header */}
-        <ProfileHeader {...mockProfileData} />
+        <ProfileHeader data={dataExample} />
 
         {/* KPI Cards */}
-        <KPICards />
+        <KPICard data={dataExample.KPIs} />
 
         {/* Recent Posts */}
-        <RecentPosts />
+        <InstagramPostCard data={dataExample.posts}/>
 
         {/* Charts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
